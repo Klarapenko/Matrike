@@ -114,9 +114,13 @@ def razumevanje_matrike(matrika):
         vrstica = vrstica.split()
         vrstica1 = []
         for x in vrstica: #gledam po en clen niza 
-            vrstica1.append(int(x)) #niz pretvorim v stevilo in dodam v seznam
+            vrstica1.append(float(x)) #niz pretvorim v stevilo in dodam v seznam
         matrika1.append(vrstica1)
     return Matrika(matrika1)
+
+def razumevanje_skalarja(skalar):
+    return(float(skalar))
+
 
 
 
