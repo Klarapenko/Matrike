@@ -1,5 +1,18 @@
 %rebase('osnova.tpl')
 
+<body align="center">
+
+       <div class="hero-body">
+        <h1 class="subtitle">
+            <p><b> POZOR!  </b> </p>
+            <p>Prvi vnosu matrik bodi pozoren na ujemanje </p>
+            <p>števila stolpcev prve matrike s številom vrstic druge matrike.</p>
+
+        </h1>
+        </div>
+
+</body>
+
 <form action ="/mnozenje_matrik/" method="POST">
 <div class="form-group">
   <div class="control">

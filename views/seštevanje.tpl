@@ -1,5 +1,16 @@
 %rebase('osnova.tpl')
 
+<body align="center">
+
+       <div class="hero-body">
+        <h1 class="subtitle">
+            <p><b> POZOR!  </b> </p>
+            <p>Prvi vnosu matrik bodi pozoren da sta enakih dimenzij. </p>
+        </h1>
+        </div>
+
+</body>
+
 <form action ="/sestevanje/" method="POST">
 <div class="form-group">
   <div class="control">

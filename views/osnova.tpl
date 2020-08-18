@@ -24,7 +24,7 @@
                     Odštevanje
             </a>
             <a href="/zmnozi_matriki/" class="navbar-item is-active">
-                    Množenje 
+                    Množenje matrik
             </a>
             <a href="/zmnozi_skalarjem/" class="navbar-item is-active">
                     Množenje matrike s skalarjem

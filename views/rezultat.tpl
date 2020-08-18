@@ -23,8 +23,10 @@
 
     </body>
 <table>
+
 %for vrstica in rezultat.matrika:
    <p> <b> {{vrstica}} </b> </p>
+
 </table>
 %end
 
