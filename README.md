@@ -17,14 +17,14 @@ Pri uporabi programa je potreben biti pazljiv z vpisovanjem podatkov in se zaved
 - V terminalu se bo izpisala povezava : _______ , ki vas bo usmerila na program.
 
 ## Navodila za uporabo programa
-- Na osnovni strani se na zgornjem delu nahajajo gumbi kateri vas usmerijo k željeni računski operaciji.
+- Na osnovni strani se na zgornjem delu nahajajo gumbi, kateri vas usmerijo k željeni računski operaciji.
 - Po izboru enega od teh se vam bo prikazalo eno ali dva polja za vnos podatkov (odvisno od izbrane računske operacije)
 - Pozorni bodite kako vpisujete podatke matrike:
     - Vpisujte povrsti po vrsticah, torej najprej prva vrstica, potem druga in tako naprej do konca vaše matrike
     - Elemente v posamezni vrstici ločite s presledkom, posamezne vrstice pa z vejico. Torej bo vaš vpis zgledal približno takole(primer matrike s tremi vrsticami in štirimi stolpci):
     1 3 5 -10, 4 6 13 8, 3 6 -6 9
 
-- Pritisnete na gumb pod okencem in prikaže se vam rezultat
+- Ko vnesete vse podatke pritisnete na gumb pod okencem in prikaže se vam rezultat
     
         
 
