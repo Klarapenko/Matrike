@@ -1,4 +1,4 @@
-from model import Matrika, razumevanje_matrike
+from model import Matrika, razumevanje_matrike, razumevanje_skalarja
 import model
 import bottle
 
@@ -53,22 +53,22 @@ def zmnozi_s_skalarjem():
 def zmnozi():
     mat1 = bottle.request.forms['matrika1']
     skalar = bottle.request.forms['skalar']
-    rezultat = razumevanje_matrike(mat1).zmnozek_matrika_s_skalarjem(skalar)
+    rezultat = razumevanje_matrike(mat1).zmnozek_matrika_s_skalarjem(razumevanje_skalarja(skalar))
     return bottle.template("rezultat.tpl", rezultat = rezultat)
 
 
 
 
 
-#@bottle.get('/kvadriraj/')
-#def kvadrat():
-#    return bottle.template("kvadriranje_matrike.tpl")
-#
-#@bottle.post('/kvadriranje/')
-#def kvadriraj():
-#    mat1 = bottle.request.forms['matrika1']
-#    rezultat = razumevanje_matrike(mat1).kvadrat_matrike()
-#    return bottle.template("rezultat.tpl", rezultat = rezultat)
+@bottle.get('/kvadriraj/')
+def kvadrat():
+    return bottle.template("kvadriranje_matrike.tpl")
+
+@bottle.post('/kvadriranje/')
+def kvadriraj():
+    mat1 = bottle.request.forms['matrika1']
+    rezultat = razumevanje_matrike(mat1).kvadrat_matrike()
+    return bottle.template("rezultat.tpl", rezultat = rezultat)
 
 
 

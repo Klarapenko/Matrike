@@ -44,9 +44,10 @@ class Matrika:
             vrstica = []
             for j in range(len(A)):
                 vrstica.append(A[j][i])
-            matrika.append(vrstica)
+            matrika.append(vrstica)            
         return Matrika(matrika)
-    
+
+
 
     def __mul__(self, other):
         if self.stolpci == other.vrstice:
@@ -67,20 +68,22 @@ class Matrika:
             print("Matriki nimata ustreznih dimenzij za množenje")
 
     
-    #def kvadrat_matrike(self): #tuki ne rabim prevert če se stolpci in vrstice ujemajo
-    #    transponirana = self.transponiraj()
-    #    matrika = []
-    #    for i in range(self.vrstice):
-    #        vrstica_v_produktu = []
-    #        for j in range(self.stolpci):
-    #            vsota_produktov = 0
-    #            for clen in zip(self.matrika[i], transponirana.matrika[j]):
-    #                produkt = clen[0] * clen[1]
-    #                vsota_produktov += produkt
-    #                produkt = 0
-    #            vrstica_v_produktu.append(vsota_produktov)
-    #        matrika.append(vrstica_v_produktu)
-    #    return Matrika(matrika)
+    def kvadrat_matrike(self):
+        if self.ali_je_matrika_kvadratna() == True:
+            transponirana = self.transponiraj()
+            produkt_matrik = []
+            for i in range(self.vrstice):
+                vrstica_v_produktu = []
+                for j in range(self.stolpci):
+                    vsota_produktov = 0
+                    for clen in zip(self.matrika[i], transponirana.matrika[j]):
+                        produkt = clen[0] * clen[1]
+                        vsota_produktov += produkt 
+                        produkt = 0
+                    vrstica_v_produktu.append(vsota_produktov)
+                produkt_matrik.append(vrstica_v_produktu)
+            return Matrika(produkt_matrik)
+        
 
     def ali_je_matrika_kvadratna(self):
         return self.vrstice == self.stolpci
@@ -138,8 +141,8 @@ print(p)
 c = p*q
 print(c) #produkt dela
 
-#d = p.kvadrat_matrike()   
-#print(d) #kvadrat dela
+d = p.kvadrat_matrike()   
+print(d) #kvadrat dela
 
 e = q.sled_matrike()
 print(e) #sled dela
