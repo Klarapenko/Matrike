@@ -1,4 +1,3 @@
-
 class Matrika:
 
     def __init__(self, matrika):
@@ -8,7 +7,7 @@ class Matrika:
 
 
     def __repr__(self):
-        return f' Matrika({self.matrika})'
+        return f' {self.matrika}'
 
     
 
@@ -68,20 +67,20 @@ class Matrika:
             print("Matriki nimata ustreznih dimenzij za množenje")
 
     
-    def kvadrat_matrike(self): #tuki ne rabim prevert če se stolpci in vrstice ujemajo
-        transponirana = self.transponiraj()
-        matrika = []
-        for i in range(self.vrstice):
-            vrstica_v_produktu = []
-            for j in range(self.stolpci):
-                vsota_produktov = 0
-                for clen in zip(self.matrika[i], transponirana.matrika[j]):
-                    produkt = clen[0] * clen[1]
-                    vsota_produktov += produkt
-                    produkt = 0
-                vrstica_v_produktu.append(vsota_produktov)
-            matrika.append(vrstica_v_produktu)
-        return Matrika(matrika)
+    #def kvadrat_matrike(self): #tuki ne rabim prevert če se stolpci in vrstice ujemajo
+    #    transponirana = self.transponiraj()
+    #    matrika = []
+    #    for i in range(self.vrstice):
+    #        vrstica_v_produktu = []
+    #        for j in range(self.stolpci):
+    #            vsota_produktov = 0
+    #            for clen in zip(self.matrika[i], transponirana.matrika[j]):
+    #                produkt = clen[0] * clen[1]
+    #                vsota_produktov += produkt
+    #                produkt = 0
+    #            vrstica_v_produktu.append(vsota_produktov)
+    #        matrika.append(vrstica_v_produktu)
+    #    return Matrika(matrika)
 
     def ali_je_matrika_kvadratna(self):
         return self.vrstice == self.stolpci
@@ -92,7 +91,9 @@ class Matrika:
             A = self.matrika
             for i in range(self.vrstice):
                 sled += A[i][i]
-        return sled
+            return sled
+        else:
+            return print("Matrika nima sledi, saj ni kvadratna")
 
     def zmnozek_matrika_s_skalarjem(self, s = 1):
         matrika_pomnozena = []
@@ -106,21 +107,49 @@ class Matrika:
             matrika_pomnozena.append(vrstica)
         return Matrika(matrika_pomnozena)
 
+def razumevanje_matrike(matrika):
+    matrika = matrika.split(",") #razdelim niz na dele v seznam pri vsakem znaku za vejico
+    matrika1 = []
+    for vrstica in matrika:
+        vrstica = vrstica.split()
+        vrstica1 = []
+        for x in vrstica: #gledam po en clen niza 
+            vrstica1.append(int(x)) #niz pretvorim v stevilo in dodam v seznam
+        matrika1.append(vrstica1)
+    return Matrika(matrika1)
+
+
+
+
 
 
 ##================================================================##
 ##================================================================##
+##=================PREVERIM DELOVANJE METOD=======================##
 p= Matrika([[1,2,3,4], [3,4,5,6],[4,6,7,8], [2,3,4,5], [1,4,6,2]])
 q = Matrika([[1,2,3,4],[2,3,4,5], [1,4,7,9], [2,3,4,5]])
+z = Matrika([[1,2,3,4],[2,3,4,5], [1,4,7,9], [2,3,4,5], [1,2,3,4]])
 print(p)
-c = p*q
-print(c)
 
-d = p.kvadrat_matrike()   
-print(d)
+c = p*q
+print(c) #produkt dela
+
+#d = p.kvadrat_matrike()   
+#print(d) #kvadrat dela
 
 e = q.sled_matrike()
-print(e)
+print(e) #sled dela
 
 f = p.zmnozek_matrika_s_skalarjem(3)
-print(f)
+print(f) #dela
+
+l = p + z
+print(l) #vsota dela
+
+a = p - z
+print(a) #razlika dela
+
+g = p.transponiraj()
+print(g) #transponiranje dela
+
+
