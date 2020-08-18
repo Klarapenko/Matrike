@@ -14,7 +14,7 @@ Pri uporabi programa je potreben biti pazljiv z vpisovanjem podatkov in se zaved
 ## Navodila za zagon programa
 - Prenesite vse datoteke iz tega repozitorija(Matrike)
 - Z ukazom Run Python File in Terminal poženite datoteko racunanje_z_matrikami.py
-- V terminalu se bo izpisala povezava : _______ , ki vas bo usmerila na program.
+- V terminalu se bo izpisala povezava : http://127.0.0.1:8080/ , ki vas bo usmerila na program.
 
 ## Navodila za uporabo programa
 - Na osnovni strani se na zgornjem delu nahajajo gumbi, kateri vas usmerijo k željeni računski operaciji.
