@@ -55,7 +55,7 @@ class Matrika:
             produkt_matrik = []
             for i in range(self.vrstice):
                 vrstica_v_produktu = []
-                for j in range(self.stolpci):
+                for j in range(other.stolpci):
                     vsota_produktov = 0
                     for clen in zip(self.matrika[i], transponirana.matrika[j]):
                         produkt = clen[0] * clen[1]
@@ -110,6 +110,25 @@ class Matrika:
             matrika_pomnozena.append(vrstica)
         return Matrika(matrika_pomnozena)
 
+    def ali_je_matrika_podana(self):
+        if self.matrika == [[]]:
+            return False
+        else: 
+            return True
+
+    def dolzine_vrstic(self):
+        dolzine = []
+        A = self.matrika
+        for vrstica in self.matrika:
+            dolzina = len(vrstica)
+            dolzine.append(dolzina)
+        return dolzine
+
+
+
+
+
+
 def razumevanje_matrike(matrika):
     matrika = matrika.split(",") #razdelim niz na dele v seznam pri vsakem znaku za vejico
     matrika1 = []
@@ -121,8 +140,42 @@ def razumevanje_matrike(matrika):
         matrika1.append(vrstica1)
     return Matrika(matrika1)
 
+
 def razumevanje_skalarja(skalar):
     return(float(skalar))
+
+def pravilnost_vnosa_skalarja(skalar):
+    """zapise skalar prejet iz vnosa v
+    obliko za uporabo v spodnjih definicijah"""
+    return skalar
+
+def ali_je_skalar_podan(skalar):
+    if skalar == '':
+        return False
+    else:
+        return True
+
+
+
+def ali_so_vrstice_enako_dolge(sez):
+    """ Definicija sprejme seznam, katerega 
+    elementi so dolzine vsake vrstice """
+
+    for element in sez:
+        if len(sez) == 0:
+            return False
+        elif len(sez) == 1:
+            return True
+        elif sez[0] != sez[1]:
+            return False
+        else:
+            return ali_so_vrstice_enako_dolge(sez[1:])
+    return False
+
+
+
+
+
 
 
 
@@ -158,5 +211,3 @@ print(a) #razlika dela
 
 g = p.transponiraj()
 print(g) #transponiranje dela
-
-
