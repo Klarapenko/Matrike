@@ -11,6 +11,10 @@ Računanje z matrikami je program, ki sem ga napisala za projektno nalogo pri pr
 
 Pri uporabi programa je potreben biti pazljiv z vpisovanjem podatkov in se zavedati, da seštevamo in odštevamo le matriki istih dimenzij. Pri množenju dveh matrik je potrebno paziti, da se število stolpcev prve matrike ujema s številom vrstic druge matrike. Pri kvadriranju in računanju sledi matrike, pa more biti matrika obvezno kvadratna.
 
+Če se pri vpisovanju podatkov zmotimo, program to zazna in nas na to opozori.
+
+
+
 ## Navodila za zagon programa
 - Prenesite vse datoteke iz tega repozitorija(Matrike)
 - Z ukazom Run Python File in Terminal poženite datoteko racunanje_z_matrikami.py
