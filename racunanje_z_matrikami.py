@@ -1,4 +1,4 @@
-from model import Matrika, razumevanje_matrike, razumevanje_skalarja
+from model import Matrika, razumevanje_matrike, razumevanje_skalarja, ali_je_skalar_podan, pravilnost_vnosa_skalarja, ali_so_vrstice_enako_dolge
 import model
 import bottle
 
@@ -16,8 +16,17 @@ def sestej():
 def sestevaj():
     mat1 = bottle.request.forms['matrika1']
     mat2 =  bottle.request.forms['matrika2']
-    rezultat = razumevanje_matrike(mat1) + razumevanje_matrike(mat2)
-    return bottle.template("rezultat.tpl", rezultat = rezultat)
+    mat11 = razumevanje_matrike(mat1)
+    mat22 = razumevanje_matrike(mat2)
+    if mat11.ali_je_matrika_podana() == False or mat22.ali_je_matrika_podana() == False:
+        return bottle.template("neustrezen.tpl")
+    elif mat11.vrstice != mat22.vrstice:
+        return bottle.template("neustrezen.tpl")
+    elif sum(mat11.dolzine_vrstic()) != sum(mat22.dolzine_vrstic()):
+        return bottle.template("neustrezen.tpl")
+    else:
+        rezultat = mat11 + mat22
+        return bottle.template("rezultat.tpl", rezultat = rezultat)
 
 
 
@@ -29,8 +38,17 @@ def odstej():
 def odstevaj():
     mat1 = bottle.request.forms['matrika1']
     mat2 =  bottle.request.forms['matrika2']
-    rezultat = razumevanje_matrike(mat1) - razumevanje_matrike(mat2)
-    return bottle.template("rezultat.tpl", rezultat = rezultat)
+    mat11 = razumevanje_matrike(mat1)
+    mat22 = razumevanje_matrike(mat2)
+    if mat11.ali_je_matrika_podana() == False or mat22.ali_je_matrika_podana() == False:
+        return bottle.template("neustrezen.tpl")
+    elif mat11.vrstice != mat22.vrstice:
+        return bottle.template("neustrezen.tpl")
+    elif sum(mat11.dolzine_vrstic()) != sum(mat22.dolzine_vrstic()):
+        return bottle.template("neustrezen.tpl")
+    else:
+        rezultat = mat11 - mat22
+        return bottle.template("rezultat.tpl", rezultat = rezultat)
 
 @bottle.get('/zmnozi_matriki/')
 def zmnozi_matriki():
@@ -40,8 +58,17 @@ def zmnozi_matriki():
 def mnozi():
     mat1 = bottle.request.forms['matrika1']
     mat2 =  bottle.request.forms['matrika2']
-    rezultat = razumevanje_matrike(mat1) * razumevanje_matrike(mat2)
-    return bottle.template("rezultat.tpl",rezultat = rezultat)
+    mat11 = razumevanje_matrike(mat1)
+    mat22 = razumevanje_matrike(mat2)
+    if mat11.ali_je_matrika_podana() == False or mat22.ali_je_matrika_podana() == False:
+        return bottle.template("neustrezen.tpl")
+    elif ali_so_vrstice_enako_dolge(mat11.dolzine_vrstic()) == False or ali_so_vrstice_enako_dolge(mat22.dolzine_vrstic()) == False:
+        return bottle.template("neustrezen.tpl")
+    elif mat11.stolpci != mat22.vrstice:
+        return bottle.template("neustrezen.tpl")
+    else:
+        rezultat = mat11 * mat22
+        return bottle.template("rezultat.tpl",rezultat = rezultat)
 
 
 
@@ -53,8 +80,15 @@ def zmnozi_s_skalarjem():
 def zmnozi():
     mat1 = bottle.request.forms['matrika1']
     skalar = bottle.request.forms['skalar']
-    rezultat = razumevanje_matrike(mat1).zmnozek_matrika_s_skalarjem(razumevanje_skalarja(skalar))
-    return bottle.template("rezultat.tpl", rezultat = rezultat)
+    mat11 = razumevanje_matrike(mat1)
+    skalar11 = pravilnost_vnosa_skalarja(skalar)
+    if mat11.ali_je_matrika_podana() == False or ali_je_skalar_podan(skalar11) == False:
+        return bottle.template("neustrezen.tpl")
+    if ali_so_vrstice_enako_dolge(mat11.dolzine_vrstic()) == False:
+        return bottle.template("neustrezen.tpl")
+    else:
+        rezultat = mat11.zmnozek_matrika_s_skalarjem(razumevanje_skalarja(skalar))
+        return bottle.template("rezultat.tpl", rezultat = rezultat)
 
 
 
@@ -67,8 +101,16 @@ def kvadrat():
 @bottle.post('/kvadriranje/')
 def kvadriraj():
     mat1 = bottle.request.forms['matrika1']
-    rezultat = razumevanje_matrike(mat1).kvadrat_matrike()
-    return bottle.template("rezultat.tpl", rezultat = rezultat)
+    mat11 = razumevanje_matrike(mat1)
+    if mat11.ali_je_matrika_podana() == False:
+        return bottle.template("neustrezen.tpl")
+    elif ali_so_vrstice_enako_dolge(mat11.dolzine_vrstic()) == False:
+        return bottle.template("neustrezen.tpl")
+    elif mat11.ali_je_matrika_kvadratna() == False:
+        return bottle.template("neustrezen.tpl")
+    else:
+        rezultat = mat11.kvadrat_matrike()
+        return bottle.template("rezultat.tpl", rezultat = rezultat)
 
 
 
@@ -80,8 +122,14 @@ def transponiranka():
 @bottle.post('/transponiranje/')
 def transponiraj():
     mat1 = bottle.request.forms['matrika1']
-    rezultat = razumevanje_matrike(mat1).transponiraj()
-    return bottle.template("rezultat.tpl", rezultat = rezultat)
+    mat11 = razumevanje_matrike(mat1)
+    if mat11.ali_je_matrika_podana() == False:
+        return bottle.template("neustrezen.tpl")
+    elif ali_so_vrstice_enako_dolge(mat11.dolzine_vrstic()) == False:
+        return bottle.template("neustrezen.tpl")
+    else:
+        rezultat = mat11.transponiraj()
+        return bottle.template("rezultat.tpl", rezultat = rezultat)
 
 
 @bottle.get('/izracunaj_sled/')
@@ -91,11 +139,19 @@ def sled():
 @bottle.post('/racunanje_sledi/')
 def racunaj_sled():
     mat1 = bottle.request.forms['matrika1']
-    rezultat = razumevanje_matrike(mat1).sled_matrike()
-    return bottle.template("rezultat_sled.tpl", rezultat = rezultat)
+    mat11 = razumevanje_matrike(mat1)
+    rezultat = mat11.sled_matrike()
+    if mat11.ali_je_matrika_podana() == False:
+        return bottle.template("neustrezen.tpl")
+    elif ali_so_vrstice_enako_dolge(mat11.dolzine_vrstic()) == False:
+        return bottle.template("neustrezen.tpl")
+    elif mat11.ali_je_matrika_kvadratna() == False:
+        return bottle.template("neustrezen.tpl")    
+    else:
+        return bottle.template("rezultat_sled.tpl", rezultat = rezultat)
 
 
-   
+ 
 
 bottle.run(debug= True, reloader= True)
 
