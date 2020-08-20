@@ -39,36 +39,24 @@
                     Sled
             </a>
 
-
-            </div>
-            </div>
-    
-                  
+                </div>
+            </div>       
         </header>
     </div>
-
-
  <!-- Hero content: will be in the middle -->
     <div class="hero-body">
         <div class="container has-text-centered">
             <h1 class="title">
                 RAČUNANJE Z MATRIKAMI
             </h1>
-            <h2 class="subtitle">
-  
-            </h2>
-
+            <h2 class="subtitle"></h2>
         </div>
     </div>  
 </section>  
 
 <body>
 
-</body>
-  
-  
   {{!base}}    
-
 
   </body>
 </html>

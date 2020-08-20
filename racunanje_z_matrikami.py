@@ -2,7 +2,6 @@ from model import Matrika, razumevanje_matrike, razumevanje_skalarja, ali_je_ska
 import model
 import bottle
 
-
 @bottle.get('/')
 def osnovna_stran():
     return bottle.template('osnovna_stran.tpl')
@@ -11,7 +10,6 @@ def osnovna_stran():
 def sestej():
     return bottle.template('seštevanje.tpl')
     
-
 @bottle.post('/sestevanje/')
 def sestevaj():
     mat1 = bottle.request.forms['matrika1']
@@ -27,8 +25,6 @@ def sestevaj():
     else:
         rezultat = mat11 + mat22
         return bottle.template("rezultat.tpl", rezultat = rezultat)
-
-
 
 @bottle.get('/odstej/')
 def odstej():
@@ -68,9 +64,7 @@ def mnozi():
         return bottle.template("neustrezen.tpl")
     else:
         rezultat = mat11 * mat22
-        return bottle.template("rezultat.tpl",rezultat = rezultat)
-
-
+        return bottle.template("rezultat.tpl", rezultat = rezultat)
 
 @bottle.get('/zmnozi_skalarjem/')
 def zmnozi_s_skalarjem():
@@ -90,10 +84,6 @@ def zmnozi():
         rezultat = mat11.zmnozek_matrika_s_skalarjem(razumevanje_skalarja(skalar))
         return bottle.template("rezultat.tpl", rezultat = rezultat)
 
-
-
-
-
 @bottle.get('/kvadriraj/')
 def kvadrat():
     return bottle.template("kvadriranje_matrike.tpl")
@@ -112,9 +102,6 @@ def kvadriraj():
         rezultat = mat11.kvadrat_matrike()
         return bottle.template("rezultat.tpl", rezultat = rezultat)
 
-
-
-
 @bottle.get('/transponiraj/')
 def transponiranka():
     return bottle.template("transponiranje.tpl")
@@ -130,7 +117,6 @@ def transponiraj():
     else:
         rezultat = mat11.transponiraj()
         return bottle.template("rezultat.tpl", rezultat = rezultat)
-
 
 @bottle.get('/izracunaj_sled/')
 def sled():
@@ -150,8 +136,6 @@ def racunaj_sled():
     else:
         return bottle.template("rezultat_sled.tpl", rezultat = rezultat)
 
-
- 
 
 bottle.run(debug= True, reloader= True)
 

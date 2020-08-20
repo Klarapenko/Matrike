@@ -5,11 +5,8 @@ class Matrika:
         self.stolpci = len(matrika[0])
         self.matrika = matrika
 
-
     def __repr__(self):
         return f' {self.matrika}'
-
-    
 
     def __add__(self, other):
         if self.stolpci == other.stolpci:
@@ -23,7 +20,6 @@ class Matrika:
                 return Matrika(vsota_matrik)
         return print("Matriki nimata enakih dimenzij")
 
-
     def __sub__(self, other):
         if self.stolpci == other.stolpci:
             if self.vrstice == other.vrstice:
@@ -36,7 +32,6 @@ class Matrika:
                 return Matrika(razlika_matrik)
         return print("Matriki nimata enakih dimenzij")
                         
-    
     def transponiraj(self):
         matrika = []
         A = self.matrika
@@ -46,8 +41,6 @@ class Matrika:
                 vrstica.append(A[j][i])
             matrika.append(vrstica)            
         return Matrika(matrika)
-
-
 
     def __mul__(self, other):
         if self.stolpci == other.vrstice:
@@ -66,7 +59,6 @@ class Matrika:
             return Matrika(produkt_matrik)
         else:
             print("Matriki nimata ustreznih dimenzij za množenje")
-
     
     def kvadrat_matrike(self):
         if self.ali_je_matrika_kvadratna() == True:
@@ -84,7 +76,6 @@ class Matrika:
                 produkt_matrik.append(vrstica_v_produktu)
             return Matrika(produkt_matrik)
         
-
     def ali_je_matrika_kvadratna(self):
         return self.vrstice == self.stolpci
 
@@ -125,27 +116,22 @@ class Matrika:
         return dolzine
 
 
-
-
-
-
 def razumevanje_matrike(matrika):
-    matrika = matrika.split(",") #razdelim niz na dele v seznam pri vsakem znaku za vejico
+    matrika = matrika.split(",") 
     matrika1 = []
     for vrstica in matrika:
         vrstica = vrstica.split()
         vrstica1 = []
-        for x in vrstica: #gledam po en clen niza 
-            vrstica1.append(float(x)) #niz pretvorim v stevilo in dodam v seznam
+        for znak in vrstica:
+            vrstica1.append(float(znak))
         matrika1.append(vrstica1)
     return Matrika(matrika1)
-
 
 def razumevanje_skalarja(skalar):
     return(float(skalar))
 
 def pravilnost_vnosa_skalarja(skalar):
-    """zapise skalar prejet iz vnosa v
+    """Zapise skalar prejet iz vnosa v
     obliko za uporabo v spodnjih definicijah"""
     return skalar
 
@@ -155,12 +141,9 @@ def ali_je_skalar_podan(skalar):
     else:
         return True
 
-
-
 def ali_so_vrstice_enako_dolge(sez):
     """ Definicija sprejme seznam, katerega 
     elementi so dolzine vsake vrstice """
-
     for element in sez:
         if len(sez) == 0:
             return False
@@ -172,42 +155,3 @@ def ali_so_vrstice_enako_dolge(sez):
             return ali_so_vrstice_enako_dolge(sez[1:])
     return False
 
-
-
-
-
-
-
-
-
-
-
-
-##================================================================##
-##================================================================##
-##=================PREVERIM DELOVANJE METOD=======================##
-p= Matrika([[1,2,3,4], [3,4,5,6],[4,6,7,8], [2,3,4,5], [1,4,6,2]])
-q = Matrika([[1,2,3,4],[2,3,4,5], [1,4,7,9], [2,3,4,5]])
-z = Matrika([[1,2,3,4],[2,3,4,5], [1,4,7,9], [2,3,4,5], [1,2,3,4]])
-print(p)
-
-c = p*q
-print(c) #produkt dela
-
-d = p.kvadrat_matrike()   
-print(d) #kvadrat dela
-
-e = q.sled_matrike()
-print(e) #sled dela
-
-f = p.zmnozek_matrika_s_skalarjem(3)
-print(f) #dela
-
-l = p + z
-print(l) #vsota dela
-
-a = p - z
-print(a) #razlika dela
-
-g = p.transponiraj()
-print(g) #transponiranje dela
