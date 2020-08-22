@@ -44,22 +44,17 @@ class Matrika:
 
     def __mul__(self, other):
         if self.stolpci == other.vrstice:
-            transponirana = other.transponiraj()
-            produkt_matrik = []
-            for i in range(self.vrstice):
-                vrstica_v_produktu = []
-                for j in range(other.stolpci):
-                    vsota_produktov = 0
-                    for clen in zip(self.matrika[i], transponirana.matrika[j]):
-                        produkt = clen[0] * clen[1]
-                        vsota_produktov += produkt 
-                        produkt = 0
-                    vrstica_v_produktu.append(vsota_produktov)
-                produkt_matrik.append(vrstica_v_produktu)
-            return Matrika(produkt_matrik)
-        else:
-            print("Matriki nimata ustreznih dimenzij za množenje")
-    
+            sez1 = Matrika(self.matrika).v_navadno()
+            sez2 = Matrika(other.matrika).v_navadno()
+            skupek_matrik =[]
+            for i in range(len(sez2)):
+                za_sestet_stolpci = []
+                for j in range(len(sez1)):
+                    za_sestet_stolpci.append(mnozenje_stevilo_seznam(sez1[j],sez2[i][j]))
+                skupek_matrik.append(za_sestet_stolpci)
+            return Matrika(Matrika(sesteva_stolpce(skupek_matrik)).v_navadno())
+        return print("Matriki nimata ustreznih dimenzij za množenje")
+  
     def kvadrat_matrike(self):
         if self.ali_je_matrika_kvadratna() == True:
             transponirana = self.transponiraj()
@@ -114,7 +109,48 @@ class Matrika:
             dolzina = len(vrstica)
             dolzine.append(dolzina)
         return dolzine
+    
+    def v_navadno(self):
+        """Sestavi matriko seznama vrstic v 
+        seznam stolpcev in obratno  """
+        seznam_vrstic = []
+        for i in range(self.stolpci): # gre po vrsticah
+            vrstica = []
+            for j in range(self.vrstice): # gre po stolpcih
+                vrstica.append(self.matrika[j][i])
+            seznam_vrstic.append(vrstica)
+        return seznam_vrstic
 
+
+def mnozenje_stevilo_seznam(sez, n):
+    nov_sez = []
+    for i in range(len(sez)):
+        novo_st = sez[i] * n
+        nov_sez.append(novo_st)
+    return nov_sez
+
+def vsota_stolpcev(sez1, sez2):
+    """sešteje seznama"""
+    nov_stolpec = []
+    for i in range(len(sez1)):
+        vsota = 0
+        vsota += sez1[i] + sez2[i]
+        nov_stolpec.append(vsota)
+    return nov_stolpec
+
+def sesteva_stolpce(seznam_seznamov_stolpcev):
+    """sešteje vse 'stolpce' v posameznem podseznamu """
+    matrika_stolpcev = []
+    for i in range(len(seznam_seznamov_stolpcev)):
+        sez = seznam_seznamov_stolpcev[i]
+        stolpec11 = sez[0]
+        while len(sez) > 1:
+            i = 0
+            stolpec22 = sez[1]
+            stolpec11 = vsota_stolpcev(stolpec11, stolpec22)
+            sez = sez[i+1:]
+        matrika_stolpcev.append(stolpec11)
+    return matrika_stolpcev
 
 def razumevanje_matrike(matrika):
     matrika = matrika.split(",") 
